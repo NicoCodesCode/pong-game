@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cgvck7lwuu673"]
+[gd_scene load_steps=10 format=3 uid="uid://cgvck7lwuu673"]
 
 [ext_resource type="PackedScene" uid="uid://biqa7rd2wvr7b" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cdgxeew27wt6x" path="res://scenes/computer.tscn" id="2_yqjtg"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ccige6lxsosys" path="res://scenes/score_counter.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://un0b5fbvj0ex" path="res://scripts/PlayerScoreArea.cs" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://n1kin1nyj6jc" path="res://scripts/ComputerScoreArea.cs" id="4_gee14"]
+[ext_resource type="Script" uid="uid://cr4bosw128huu" path="res://scripts/Computer.cs" id="6_u5sy4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
 size = Vector2(1152, 20)
@@ -28,7 +29,7 @@ shape = SubResource("RectangleShape2D_u5sy4")
 position = Vector2(590, 638)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
-position = Vector2(-14, 20)
+position = Vector2(-14, 22)
 shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="ScoreAreas" type="Node" parent="."]
@@ -70,8 +71,10 @@ offset_bottom = 85.0
 [node name="Player" parent="." instance=ExtResource("1_uwrxv")]
 position = Vector2(35, 269)
 
-[node name="Computer" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(1098, 336)
+[node name="Computer" parent="." node_paths=PackedStringArray("Ball") instance=ExtResource("2_yqjtg")]
+position = Vector2(1098, 338)
+script = ExtResource("6_u5sy4")
+Ball = NodePath("../Ball")
 
 [node name="Ball" parent="." node_paths=PackedStringArray("PlayerScoreArea", "ComputerScoreArea") instance=ExtResource("3_lnu2h")]
 position = Vector2(575, 322)
