@@ -7,7 +7,6 @@
 radius = 16.0
 
 [node name="Ball" type="CharacterBody2D"]
-position = Vector2(0, 6)
 script = ExtResource("1_cxlvu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
