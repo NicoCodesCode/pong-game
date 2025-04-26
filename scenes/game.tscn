@@ -1,17 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgvck7lwuu673"]
+[gd_scene load_steps=9 format=3 uid="uid://cgvck7lwuu673"]
 
 [ext_resource type="PackedScene" uid="uid://biqa7rd2wvr7b" path="res://scenes/player.tscn" id="1_uwrxv"]
 [ext_resource type="PackedScene" uid="uid://cdgxeew27wt6x" path="res://scenes/computer.tscn" id="2_yqjtg"]
 [ext_resource type="PackedScene" uid="uid://dc5aw8c3c77jq" path="res://scenes/ball.tscn" id="3_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ccige6lxsosys" path="res://scenes/score_counter.tscn" id="3_p57ef"]
+[ext_resource type="Script" uid="uid://un0b5fbvj0ex" path="res://scripts/PlayerScoreArea.cs" id="3_u5sy4"]
+[ext_resource type="Script" uid="uid://n1kin1nyj6jc" path="res://scripts/ComputerScoreArea.cs" id="4_gee14"]
 [ext_resource type="PackedScene" uid="uid://pndscwh24e0c" path="res://scenes/wall.tscn" id="4_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://jsriorecrva3" path="res://scenes/score_area.tscn" id="5_iywne"]
 
 [node name="Game" type="Node"]
-
-[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
-position = Vector2(31, 266)
-
-[node name="Computer" parent="." instance=ExtResource("2_yqjtg")]
-position = Vector2(1094, 319)
 
 [node name="Walls" type="Node" parent="."]
 
@@ -22,5 +20,38 @@ position = Vector2(553, 649)
 position = Vector2(512, -2)
 rotation = 3.14159
 
+[node name="ScoreAreas" type="Node" parent="."]
+
+[node name="PlayerScoreArea" parent="ScoreAreas" node_paths=PackedStringArray("ComputerScoreLabel") instance=ExtResource("5_iywne")]
+position = Vector2(-41, 336)
+script = ExtResource("3_u5sy4")
+ComputerScoreLabel = NodePath("../../ScoreCounters/ComputerScoreCounter")
+
+[node name="ComputerScoreArea" parent="ScoreAreas" node_paths=PackedStringArray("PlayerScoreLabel") instance=ExtResource("5_iywne")]
+position = Vector2(1194, 366)
+rotation = -3.14159
+script = ExtResource("4_gee14")
+PlayerScoreLabel = NodePath("../../ScoreCounters/PlayerScoreCounter")
+
+[node name="ScoreCounters" type="Node" parent="."]
+
+[node name="PlayerScoreCounter" parent="ScoreCounters" instance=ExtResource("3_p57ef")]
+offset_left = 384.0
+offset_top = 16.0
+offset_right = 424.0
+offset_bottom = 85.0
+
+[node name="ComputerScoreCounter" parent="ScoreCounters" instance=ExtResource("3_p57ef")]
+offset_left = 744.0
+offset_top = 16.0
+offset_right = 784.0
+offset_bottom = 85.0
+
+[node name="Player" parent="." instance=ExtResource("1_uwrxv")]
+position = Vector2(35, 269)
+
+[node name="Computer" parent="." instance=ExtResource("2_yqjtg")]
+position = Vector2(1098, 336)
+
 [node name="Ball" parent="." instance=ExtResource("3_lnu2h")]
-position = Vector2(545, 328)
+position = Vector2(575, 322)
