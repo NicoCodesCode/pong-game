@@ -33,17 +33,21 @@ shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="ScoreAreas" type="Node" parent="."]
 
-[node name="PlayerScoreArea" type="Area2D" parent="ScoreAreas"]
+[node name="PlayerScoreArea" type="Area2D" parent="ScoreAreas" node_paths=PackedStringArray("ComputerScoreLabel")]
 position = Vector2(0, 322)
+collision_mask = 2
 script = ExtResource("3_u5sy4")
+ComputerScoreLabel = NodePath("../../ScoreCounters/ComputerScoreCounter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/PlayerScoreArea"]
 position = Vector2(-15, 0)
 shape = SubResource("RectangleShape2D_p57ef")
 
-[node name="ComputerScoreArea" type="Area2D" parent="ScoreAreas"]
+[node name="ComputerScoreArea" type="Area2D" parent="ScoreAreas" node_paths=PackedStringArray("PlayerScoreLabel")]
 position = Vector2(0, 322)
+collision_mask = 2
 script = ExtResource("4_gee14")
+PlayerScoreLabel = NodePath("../../ScoreCounters/PlayerScoreCounter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/ComputerScoreArea"]
 position = Vector2(1175, 14)
@@ -71,3 +75,4 @@ position = Vector2(1098, 336)
 
 [node name="Ball" parent="." instance=ExtResource("3_lnu2h")]
 position = Vector2(575, 322)
+collision_layer = 2
