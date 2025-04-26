@@ -3,7 +3,7 @@ using System;
 
 public partial class Ball : CharacterBody2D
 {
-	private Vector2 _velocity = new Vector2(400, 400);
+	private Vector2 _velocity = new Vector2(500, 500);
 
     public override void _PhysicsProcess(double delta)
     {
