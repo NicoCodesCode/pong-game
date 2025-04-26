@@ -11,7 +11,7 @@
 size = Vector2(1152, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
-size = Vector2(46, 966)
+size = Vector2(46, 2520)
 
 [node name="Game" type="Node"]
 
@@ -40,7 +40,7 @@ script = ExtResource("3_u5sy4")
 ComputerScoreLabel = NodePath("../../ScoreCounters/ComputerScoreCounter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/PlayerScoreArea"]
-position = Vector2(-15, 0)
+position = Vector2(-152, -2)
 shape = SubResource("RectangleShape2D_p57ef")
 
 [node name="ComputerScoreArea" type="Area2D" parent="ScoreAreas" node_paths=PackedStringArray("PlayerScoreLabel")]
@@ -50,7 +50,7 @@ script = ExtResource("4_gee14")
 PlayerScoreLabel = NodePath("../../ScoreCounters/PlayerScoreCounter")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/ComputerScoreArea"]
-position = Vector2(1175, 14)
+position = Vector2(1304, 9)
 shape = SubResource("RectangleShape2D_p57ef")
 
 [node name="ScoreCounters" type="Node" parent="."]

@@ -6,11 +6,17 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_7s4qf"]
 radius = 16.0
 
-[node name="Ball" type="CharacterBody2D"]
+[node name="Ball" type="CharacterBody2D" node_paths=PackedStringArray("Timer")]
 script = ExtResource("1_cxlvu")
+Timer = NodePath("Timer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_7s4qf")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7s4qf")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+autostart = true
