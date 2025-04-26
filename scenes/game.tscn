@@ -6,32 +6,48 @@
 [ext_resource type="PackedScene" uid="uid://ccige6lxsosys" path="res://scenes/score_counter.tscn" id="3_p57ef"]
 [ext_resource type="Script" uid="uid://un0b5fbvj0ex" path="res://scripts/PlayerScoreArea.cs" id="3_u5sy4"]
 [ext_resource type="Script" uid="uid://n1kin1nyj6jc" path="res://scripts/ComputerScoreArea.cs" id="4_gee14"]
-[ext_resource type="PackedScene" uid="uid://pndscwh24e0c" path="res://scenes/wall.tscn" id="4_lbhrr"]
-[ext_resource type="PackedScene" uid="uid://jsriorecrva3" path="res://scenes/score_area.tscn" id="5_iywne"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u5sy4"]
+size = Vector2(1152, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p57ef"]
+size = Vector2(46, 966)
 
 [node name="Game" type="Node"]
 
 [node name="Walls" type="Node" parent="."]
 
-[node name="Wall" parent="Walls" instance=ExtResource("4_lbhrr")]
-position = Vector2(553, 649)
+[node name="TopWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(575, -30)
 
-[node name="Wall2" parent="Walls" instance=ExtResource("4_lbhrr")]
-position = Vector2(512, -2)
-rotation = 3.14159
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/TopWall"]
+position = Vector2(1, 20)
+shape = SubResource("RectangleShape2D_u5sy4")
+
+[node name="BottomWall" type="StaticBody2D" parent="Walls"]
+position = Vector2(590, 638)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/BottomWall"]
+position = Vector2(-14, 20)
+shape = SubResource("RectangleShape2D_u5sy4")
 
 [node name="ScoreAreas" type="Node" parent="."]
 
-[node name="PlayerScoreArea" parent="ScoreAreas" node_paths=PackedStringArray("ComputerScoreLabel") instance=ExtResource("5_iywne")]
-position = Vector2(-41, 336)
+[node name="PlayerScoreArea" type="Area2D" parent="ScoreAreas"]
+position = Vector2(0, 322)
 script = ExtResource("3_u5sy4")
-ComputerScoreLabel = NodePath("../../ScoreCounters/ComputerScoreCounter")
 
-[node name="ComputerScoreArea" parent="ScoreAreas" node_paths=PackedStringArray("PlayerScoreLabel") instance=ExtResource("5_iywne")]
-position = Vector2(1194, 366)
-rotation = -3.14159
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/PlayerScoreArea"]
+position = Vector2(-15, 0)
+shape = SubResource("RectangleShape2D_p57ef")
+
+[node name="ComputerScoreArea" type="Area2D" parent="ScoreAreas"]
+position = Vector2(0, 322)
 script = ExtResource("4_gee14")
-PlayerScoreLabel = NodePath("../../ScoreCounters/PlayerScoreCounter")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreAreas/ComputerScoreArea"]
+position = Vector2(1175, 14)
+shape = SubResource("RectangleShape2D_p57ef")
 
 [node name="ScoreCounters" type="Node" parent="."]
 
