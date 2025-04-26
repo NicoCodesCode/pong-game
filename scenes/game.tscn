@@ -73,6 +73,8 @@ position = Vector2(35, 269)
 [node name="Computer" parent="." instance=ExtResource("2_yqjtg")]
 position = Vector2(1098, 336)
 
-[node name="Ball" parent="." instance=ExtResource("3_lnu2h")]
+[node name="Ball" parent="." node_paths=PackedStringArray("PlayerScoreArea", "ComputerScoreArea") instance=ExtResource("3_lnu2h")]
 position = Vector2(575, 322)
 collision_layer = 2
+PlayerScoreArea = NodePath("../ScoreAreas/PlayerScoreArea")
+ComputerScoreArea = NodePath("../ScoreAreas/ComputerScoreArea")
